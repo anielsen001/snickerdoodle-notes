@@ -1,0 +1,85 @@
+These are notes saved while trying to figure out to how to set usernames and connect. I believe the solution is figured out, see sd-card.org. I'm saving for reference. <2019-02-08 Fri>
+
+** connecting to snickerdoodle
+
+https://wiki.krtkl.com/index.php?title=Console
+Power the board off of the usb and it should boot.
+
+The first time for me, the boot failed, and I didn't 
+get any love in dmesg. The second time, I got
+#+begin_src
+[1413167.880501] usb 2-2: new full-speed USB device number 9 using xhci_hcd
+[1413168.010364] usb 2-2: New USB device found, idVendor=0483, idProduct=5740
+[1413168.010372] usb 2-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[1413168.010377] usb 2-2: Product: STMicroelectronics Virtual COM Port
+[1413168.010382] usb 2-2: Manufacturer: STMMicroelectronics
+[1413168.010385] usb 2-2: SerialNumber: 00000000001A
+[1413168.035164] cdc_acm 2-2:1.0: ttyACM0: USB ACM device
+[1413168.035850] usbcore: registered new interface driver cdc_acm
+[1413168.035855] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+#+end_src
+
+I connected via screen
+#+begin_src
+screen /dev/ttyACM0 115200
+#+end_src
+as suggested, but had to hit "Enter" for the snickerdoodle prompt to appear
+in the console.
+
+from the snickerdoodle prompt, type "boot", and it will boot linux. 
+But, it does not seem to start the wifi and I cannot seem to login 
+with my username and password.
+
+I cannot get this part to work consistently. I had to rebuild the SD card
+several times and I finally got it to accept 
+a password change for the admin account, but I also tried to create a second
+account and there's no evidence of that account.
+
+For accounts, I inspected 
+/etc/passwd
+/etc/shadow
+/home
+
+The wifi information should be written to:
+/etc/wpa_supplicant.conf
+
+Now that I have an admin account and can login, try to create second user
+account. 
+#+begin_src
+admin@snickerdoodle:~$ sudo useradd apn
+#+end_src
+This adds an entry to /etc/passwd, but not a /home/apn directory. I can login
+as that user but have problems without a home dir.
+
+At this point, reboots seem to work and I can log back in as admin or the
+second account I created.
+
+With the same SD card build, try to add another user via the config.txt
+file with
+#+begin_src
+update_users=user1:user1
+#+end_src
+This didn't work, the new user was not added, but the config.txt file
+was modified to remove the entry that I created.
+
+Now try with two users, edit /boot/config.txt
+#+begin_src
+update_users=user1:user1,user2:user2
+#+end_src
+and reboot. 
+
+Neither account was created. 
+
+Since I have a pseudo-functioning SD-card. I'll create a 2nd SD-card
+and image it for the snickerdoodle, and try the setup procedure as before.
+
+I have not been able to log in at all. I reimaged the SD card thinking
+that maybe I screwed up something and used the 
+user1:password1,user2:password2 example
+
+So far nothing has worked. I edited the /etc/passwd file off line to remove
+the password requirement for root and admin by removing the x from the 
+passwd line. Neither seemed to do anytihng.
+
+see:
+http://www.microhowto.info/howto/reset_a_forgotten_root_password_using_a_live_distribution.html
