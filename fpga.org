@@ -1,0 +1,25 @@
+* snickerdoodle FPGA tools
+
+** Install Xilinx Vivado
+Target OS Unbuntu 16.04 LTS
+https://www.xilinx.com/support/download.html
+
+Installed into /usr/local/xilinx
+
+** Install snickerdoodle board files
+
+loosely following 
+http://www.craftdrones.com/blog/august-21st-20177585297
+
+cd /home/apn/proj/snickerdoodle
+git@github.com:krtkl/snickerdoodle-board-files.git
+
+copied into 
+/usr/local/xilinx/Vivado/2018.3/data/boards/board_files
+
+start vivado
+after creating the directory, hit next a couple of times until
+you are presented with the "Default Part" screen. On the 
+Default Part screen, switch to "Boards" tab and look for 
+snickerdoodle.
+
