@@ -1,0 +1,190 @@
+* snickerdoodle SD Card setup
+
+** sd card class
+
+SD card class definitions:
+https://www.sdcard.org/developers/overview/speed_class/
+
+The snickerdoodle quickstart guide recommends a UHS Speed Class 3
+https://github.com/krtkl/snickerdoodle-manual/blob/master/snickerdoodle-quick-start/snickerdoodle-quick-start.pdf
+
+I have used a UHS 3, UHS 1, and a class 4 successfully to boot the system. I don't know if the slower speeds might have problems running later on.
+
+** diversion - test SD card
+
+Test the SD card with f3probe
+#+begin_src
+$ sudo f3probe --destructive --time-ops /dev/sdb
+F3 probe 6.0
+Copyright (C) 2010 Digirati Internet LTDA.
+This is free software; see the source for copying conditions.
+
+WARNING: Probing normally takes from a few seconds to 15 minutes, but
+         it can take longer. Please be patient.
+
+Good news: The device `/dev/sdb' is the real thing
+
+Device geometry:
+	         *Usable* size: 59.62 GB (125042688 blocks)
+	        Announced size: 59.62 GB (125042688 blocks)
+	                Module: 64.00 GB (2^36 Bytes)
+	Approximate cache size: 0.00 Byte (0 blocks), need-reset=no
+	   Physical block size: 512.00 Byte (2^9 Bytes)
+
+Probe time: 1'51"
+ Operation: total time / count = avg time
+      Read: 1.11s / 4816 = 231us
+     Write: 1'48" / 4192321 = 25us
+     Reset: 799.8ms / 1 = 799.8ms
+
+#+end_src
+
+
+
+
+** buliding snickerdoodle SD card - pre-built image
+
+there is a snickerdoodle manual here:
+https://github.com/krtkl/snickerdoodle-manual
+but it's about 2 years out of date and the boot to linux
+process has changed. <2019-02-05 Tue>
+
+There are pre-built linux images on github also, here
+https://github.com/krtkl/snickerdoodle-linux-prebuilt
+but they are about 3 years out of date. <2019-02-05 Tue>
+
+see wiki https://wiki.krtkl.com/index.php?title=SD_Card
+download SD card images from http://krtkl.com/downloads
+downloaded snickerdoodle-sdcard-r2p0.zip on <2019-02-04 Mon>
+extracted from it snickerdoodle-sdcard-r2p0.img
+
+The sd create scripts can be found here on github:
+https://github.com/krtkl/snickerdoodle-build-scripts
+There is a sd create script on the wiki, but it's not the same. It appears the github version is newer and had command line arguments added.
+
+in wiki skip down to "Linux SD Card Build Script"
+The image name on the wiki does not match the image downloaded.
+
+Needed to install kpartx before continuing. Run the script and set
+environment variables as root. 
+#+begin_src
+sudo su -
+#+end_src
+
+#+begin_src
+export SD_CARD_IMG=snickerdoodle-sdcard-r2p0.img
+export SD_CARD_DEV=/dev/sdb
+#+end_src
+
+The is a bash script embedded on the wiki page, copy it to
+"sd_create.sh"
+make it executable and run it
+#+begin_src
+chmod +x sd_create.sh
+./sd_create.sh
+#+end_src
+
+The SD card won't boot yet. Read the README.txt file on the BOOT partition. You'll have to copy the appropriate files for your snickerdoodle variant to the top level of the BOOT partition. I have a snickerdoodle black in my example.
+#+begin_src
+cd /media/apn/BOOT
+cp snickerdoodle-black/boot.bin .
+cp snickerdoodle-black/devicetree.dtb .
+#+end_src
+
+Edit the "config.txt" file to set up the wifi and default passwords. In the update_users section, the documentation suggests that you can enter any username/password combination. This is not accurate as of <2019-02-08 Fri>, see this forum thread: https://krtkl.com/resources/forums/topic/whats-the-username-password-for-sd-card-r2p0-image/
+Instead, you can set the admin password and then login and set things up.
+#+begin_src
+update_users=admin:password
+#+end_src
+
+This readme has more info about editing the config.txt file:
+https://krtkl.com/uploads/snickerdoodle-sdcard-r2p0-README.pdf
+but note earlier comments about setting user names.
+
+Setting the WiFi information works as expected. I edited the Wireless Station Configuration Section similar to this:
+#+begin_src
+# Set wireless network mode
+sta_mode=wpa
+
+# Set wireless network SSID
+sta_ssid=mywifi
+
+# Set wireless network key
+sta_key=mywifipassword
+#+end_src
+
+Plug in the snickerdoodle to the usb and it should powerup. The first time for me, the boot failed, and I didn't get any love in dmesg.
+
+Power down and reboot, and then for me, dmesg looks like this, which is not the same as shown on the wiki.
+#+begin_src
+[1459385.502451] usb 2-2: new full-speed USB device number 28 using xhci_hcd
+[1459385.632379] usb 2-2: New USB device found, idVendor=0483, idProduct=5740
+[1459385.632385] usb 2-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[1459385.632388] usb 2-2: Product: STMicroelectronics Virtual COM Port
+[1459385.632391] usb 2-2: Manufacturer: STMMicroelectronics
+[1459385.632394] usb 2-2: SerialNumber: 00000000001A
+[1459385.632961] cdc_acm 2-2:1.0: ttyACM0: USB ACM device
+#+end_src
+
+Connect to the console using see: ( https://wiki.krtkl.com/index.php?title=Console)
+#+begin-src
+screen /dev/ttyACM0 115200
+#+end_src
+This may take a couple of tries. When it does connect, at first the screen is blank and I have to hit enter to get a response which says:
+#+begin_src
+Unknown command '~' - try 'help'
+snickerdoodle> 
+#+end_src
+now it can boot with:
+#+begin_src
+snickerdoodle> boot
+#+end_src
+
+Linux starts and I get to a linux prompt and I can log in with the admin/password combination that I set earlier. I can also verify that the wifi starts up and see the snickerdoodle connect to my wifi router and obtain an IP address. ssh works and I can also ssh into the snickerdoodle.
+
+* snickerdoodle FPGA tools
+
+** Install Xilinx Vivado
+Target OS Unbuntu 16.04 LTS
+https://www.xilinx.com/support/download.html
+
+Installed into /usr/local/xilinx
+
+** Install snickerdoodle board files
+
+loosely following 
+http://www.craftdrones.com/blog/august-21st-20177585297
+
+cd /home/apn/proj/snickerdoodle
+git@github.com:krtkl/snickerdoodle-board-files.git
+
+copied into 
+/usr/local/xilinx/Vivado/2018.3/data/boards/board_files
+
+start vivado
+after creating the directory, hit next a couple of times until
+you are presented with the "Default Part" screen. On the 
+Default Part screen, switch to "Boards" tab and look for 
+snickerdoodle.
+
+
+* krtkl github
+
+original:
+https://github.com/krtkl/open-source-schematics
+
+my fork:
+https://github.com/anielsen001/open-source-schematics
+created to keep for reference going forward
+
+* snickerdoodle kicad libraries
+
+I found this one on github
+https://github.com/imciner2/KiCad-Libraries
+
+I forked it for reference
+https://github.com/anielsen001/KiCad-Libraries
+
+* snickerdoodle tutorials
+
+http://www.craftdrones.com/tutorials1.html
