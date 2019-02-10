@@ -1,0 +1,39 @@
+* create blink project
+
+see: http://www.craftdrones.com/blog/create-snickerdoodle-blink-project as an example.
+
+I have board rev4 and the tutorial is board rev3. 
+I'm using vivado 2018.3, the tutorial is 2017.2
+
+When I get to the "Run Block Automation" part of the tutorial, I end up with a different result. The screen looks just like the tutorial before I run block automation, and after, it does not look the same as the tutorial. It looks like
+[[file:img/vivado_after_run_build_automation.png]]
+
+At this point, try to follow the craftdrones tutorial as best as possible. Hook up FCLK_CLK0 to M_AXI_GP0_ACLK. 
+
+After adding the blink IP, connect CLK to FCLK_CLK0 and reset_n to FCLK_RESET0_N
+
+At the validation step, I get this error:
+[[file:img/not_connected_error.png]]
+"The following clock pins are not connected to a valid clock source:
+/processing_system_7_0/S_AXI_ACP_ACLK"
+
+Now I'm stuck and cannot continue.
+
+I was able to make the error go away by double clicking on the "ZYNQ7 Processing System" modules in the diagram. Selecting "PS-PL Configuration" expanding the "ACP Slave AXI Interface" and unchecking "S AXI ACP interface"
+[[file:img/s_axi_acp_interface_tick_off.png]]
+Click the "OK" button,  revalidate the design (F6) and the errors clear. The diagram now looks like this:
+[[file:img/diagram_after_fix.png]]
+
+When I get to adding constraints, the tutorial references a krtkl git repo 
+https://github.com/krtkl/snickerdoodle-examples
+which I cloned. This repo has been reorganized since the tutorial was created. All of the constraints files in the examples repo differ from the tutorial with diff, but this is not too important for this example. 
+
+The tutorial references the snickerdoodle book, but the link no longer exists. I found a copy here:
+https://cdn.hackaday.io/files/7799333672416/snickerdoodle-book.pdf
+It would appear that the snickerdoodle manual replaces much of this:
+https://github.com/krtkl/snickerdoodle-manual
+
+Generate the bistream. This will take some time.
+
+After bistream generation is complete, this window should appear:
+[[file:img/bitstream_generation_complete.png]]
