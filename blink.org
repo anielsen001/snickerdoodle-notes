@@ -33,7 +33,30 @@ https://cdn.hackaday.io/files/7799333672416/snickerdoodle-book.pdf
 It would appear that the snickerdoodle manual replaces much of this:
 https://github.com/krtkl/snickerdoodle-manual
 
-Generate the bistream. This will take some time.
+Generate the bitstream. This will take some time.
 
-After bistream generation is complete, this window should appear:
+After bitstream generation is complete, this window should appear:
 [[file:img/bitstream_generation_complete.png]]
+
+Selecting "View Reports" and "OK" will return to vivado with a reports tab in the bottom pane. Double clicking on any of those lines will open a report tab in the top right pane with the contents of that report. Some of the reports are greyed out and cannot be clicked on.
+[[file:img/vivado_view_reports.png]]
+
+Next, find the bitstream file. 
+#+begin_src
+apn@aria:~/proj/snickerdoodle$ find . -name "*.bit"
+./blinky2/blinky2.runs/impl_1/design_1_wrapper.bit
+#+end_src
+
+And, flash it to the snickerdoodle.
+
+Next is to figure out how to get the .bit converted to a .bit.bin or program with a JTAG cable. I have the breakyBreaky board so I should be able to do this.
+
+Moving on to the http://www.craftdrones.com/blog/snickerdoodle-scripting-part-1 page, I'm greeted with Chrome's Dangerous warning about malware infecting the page. <2019-02-10 Sun>
+Fortunately, I found a copy of the page with the way-back machine
+https://web.archive.org/web/20180528163631/http://www.craftdrones.com/blog/snickerdoodle-scripting-part-1
+and the way-back machine has the craftdrones archive here. 
+https://web.archive.org/web/*/http://www.craftdrones.com/*
+This archive is not 100% complete.
+
+
+#  LocalWords:  bitstream vivado snickerdoodle krtkl
