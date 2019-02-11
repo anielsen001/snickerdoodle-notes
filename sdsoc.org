@@ -1,0 +1,23 @@
+#+TITLE: SDSoC - Software Defined System-on-Chip
+
+* Install SDx IDE 
+
+snickerdoodle black comes with a license. Email krtkl with the serial number and they will send the serial number.
+
+overall environment information can be found here:
+https://www.xilinx.com/products/design-tools/software-zone/sdsoc.html
+
+Installation instructions can be found here:
+https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_3/ug1294-sdsoc-rnil.pdf
+Saved a local copy for reference.
+
+
+
+* References:
+
+https://www.xilinx.com/products/design-tools/software-zone/sdsoc.html
+
+https://github.com/Xilinx/xfopencv
+https://github.com/Xilinx/SDSoC-Tutorials
+
+https://github.com/krtkl/snickerdoodle-SDSoC
