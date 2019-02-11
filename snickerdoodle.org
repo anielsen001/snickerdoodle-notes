@@ -21,7 +21,7 @@ https://github.com/anielsen001/KiCad-Libraries
 ** Craftdrones.
 
 http://www.craftdrones.com/tutorials1.html
-As of <2019-02-10 Sun> chrome issues malware warnings about this site.
+As of <2019-02-10 Sun> chrome issues malware warnings about this site. And then the warnings stopped, almost as quickly as they appeared. Hmm.
 
 I used the way-back machine has the craftdrones archive here. 
 https://web.archive.org/web/*/http://www.craftdrones.com/*
