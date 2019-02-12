@@ -1,4 +1,6 @@
-* create blink project
+#+TITLE: create blink project
+
+* using vivado to create bitstream
 
 see: http://www.craftdrones.com/blog/create-snickerdoodle-blink-project as an example.
 
@@ -47,9 +49,60 @@ apn@aria:~/proj/snickerdoodle$ find . -name "*.bit"
 ./blinky2/blinky2.runs/impl_1/design_1_wrapper.bit
 #+end_src
 
+* load bitstream to snickerdoodle
+
 And, flash it to the snickerdoodle.
 
 Next is to figure out how to get the .bit converted to a .bit.bin or program with a JTAG cable. I have the breakyBreaky board so I should be able to do this.
+
+There is some discussion here about converting .bit to .bin
+https://www.linuxsecrets.com/xilinx/Solution+ZynqMP+PL+Programming.html
+
+This https://lists.yoctoproject.org/pipermail/meta-xilinx/2015-December/001346.html refers to a github repo with a python script that can do the conversion https://github.com/topic-embedded-products/meta-topic/blob/master/recipes-bsp/fpga/fpga-bit-to-bin/fpga-bit-to-bin.py
+
+Some comments on the krtkl forums https://krtkl.com/resources/forums/topic/xdevcfg/ which refer to this page https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841645/Solution+Zynq+PL+Programming+With+FPGA+Manager which seems to be the same as the linuxsecrets link above.
+
+The xilinx bootgen utility ships as part of the SDK. It can be found under
+#+begin_src
+/usr/local/xilinx/SDK/2018.3/bin/bootgen
+#+end_src
+in my install. put it on the path
+#+begin_src
+export PATH=$PATH:/usr/local/xilinx/SDK/2018.3/bin
+#+end_src
+
+Loosely following the xilinx wiki. Before running bootgen, you have to create a .bif file which contains
+#+BEGIN_SRC
+all:
+{
+        design_1_wrapper.bit /* Bitstream file name */
+}
+#+END_src
+
+Made a backup of the bitstream file
+#+begin_src
+apn@aria:~/proj/snickerdoodle/blinky2/blinky2.runs/impl_1$ cp design_1_wrapper.bit  design_1_wrapper.bit.keep
+#+end_src
+
+Then run:
+#+BEGIN_SRC
+apn@aria:~/proj/snickerdoodle/blinky2/blinky2.runs/impl_1$ bootgen -image Full_Bitstream.bif -arch zynq -process_bitstream bin
+
+
+****** Xilinx Bootgen v2018.3
+  **** Build date : Dec  6 2018-23:41:49
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+apn@aria:~/proj/snickerdoodle/blinky2/blinky2.runs/impl_1$ 
+#+end_src
+
+And the .bin file was created
+#+begin_src
+apn@aria:~/proj/snickerdoodle/blinky2/blinky2.runs/impl_1$ ls *bit*
+design_1_wrapper.bit  design_1_wrapper.bit.bin  design_1_wrapper.bit.keep  write_bitstream.pb
+#+end_src
+
+* moving on
 
 Moving on to the http://www.craftdrones.com/blog/snickerdoodle-scripting-part-1 page, I'm greeted with Chrome's Dangerous warning about malware infecting the page. <2019-02-10 Sun>
 Fortunately, I found a copy of the page with the way-back machine
@@ -59,4 +112,4 @@ https://web.archive.org/web/*/http://www.craftdrones.com/*
 This archive is not 100% complete.
 
 
-#  LocalWords:  bitstream vivado snickerdoodle krtkl
+#  LocalWords:  bitstream vivado snickerdoodle krtkl xilinx
