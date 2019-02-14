@@ -1,4 +1,6 @@
-* snickerdoodle SD Card setup
+#+TITLE: snickerdoodle SD Card setup
+
+* preliminaries
 
 ** sd card class
 
@@ -42,7 +44,7 @@ Probe time: 1'51"
 
 
 
-** buliding snickerdoodle SD card - pre-built image
+* buliding snickerdoodle SD card - pre-built image
 
 there is a snickerdoodle manual here:
 https://github.com/krtkl/snickerdoodle-manual

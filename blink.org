@@ -1,5 +1,18 @@
 #+TITLE: create blink project
 
+* blink ip 
+
+Create the VHDL code to blink the LED. Here's an example:
+http://www.craftdrones.com/blog/august-22nd-2017
+
+It should aim to blink at a 1 Hz rate. The snickerdoodle clock appears to be 50 MHz
+https://groups.google.com/forum/#!topic/krtkl-snickerdoodle/kD9G4dZh_Mg
+and the counter goes to 25M
+
+What voltage to expect on the output pin?
+
+
+
 * using vivado to create bitstream
 
 see: http://www.craftdrones.com/blog/create-snickerdoodle-blink-project as an example.
@@ -59,9 +72,18 @@ I have the breakyBreaky board so I should be able to do this, but I don't have t
 
 http://www.craftdrones.com/blog/program-snickerdoodle-via-jtag
 
-** load from boot partition
+** load from SD-card boot partition
 
-http://www.craftdrones.com/blog/august-22nd-20178830744
+On the boot partition of the [[file:sd-card.org][SD card]] you can put the bitstream into a file called system.bit. Then boot the snickerdoodle with the SD-Card. You must do 
+#+begin_src
+snickerdoodle> boot
+#+end_src
+to get the bitstream to load. If the bitstream loads to the Zynq FPGA there will be a white LED on the board that flases short-long fade in to indicate that the bitstream loaded.
+
+craftdrones tutorial explains:
+[[http://www.craftdrones.com/blog/august-22nd-20178830744][setup snickerdoodle sd card]]
+
+
 
 ** load from linux
 
