@@ -19,7 +19,7 @@ snickerdoodle one has two independent “banks” of 50 FPGA I/O pins (JAx and J
 A 3.3V power supply output is supplied on each FPGA I/O connector, which can be used with a single jumper to set the I/O voltage to 3.3V for that bank without any additional external components. However, to use an I/O voltage other than 3.3V (1.2V to < 3.3V), that voltage must be supplied to the I/O bank. The microprocessor I/O (J3) have a fixed voltage of 1.8V. Note: this is required to support Ethernet on the baseboards, as RGMII does not support I/O voltages above 2.5V. The analog, audio, JTAG etc. I/O on J2 all have a fixed I/O voltage of 3.3V.
 #+end_quote
 
-My board came with a jumper connecting pins 1 and 3 on JA1, JB1 and JC1. I expect the voltage to be 3.3V on the output pins. Verified the voltage with a multimeter. This voltage appears when the snickerdoodle is powered up, it does not need to be booted.
+My board came with a jumper connecting pins 1 and 3 on JA1, JB1 and JC1. I expect the voltage to be 3.3V on the output pins. Verified the voltage with a multimeter. This voltage appears when the snickerdoodle is powered up, it does not need to be booted to see the reference voltage.
 
 
 * using vivado to create bitstream
