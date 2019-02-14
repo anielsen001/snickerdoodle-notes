@@ -92,6 +92,7 @@ to get the bitstream to load. If the bitstream loads to the Zynq FPGA there will
 craftdrones tutorial explains:
 [[http://www.craftdrones.com/blog/august-22nd-20178830744][setup snickerdoodle sd card]]
 
+Currently stuck, the bitstream loads, white LED flashes, and there is nothing on the output pin when connected to an LED nor when connected directly to a scope probe. Need to work back and find the error.
 
 
 ** load from linux
