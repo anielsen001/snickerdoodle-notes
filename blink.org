@@ -9,8 +9,17 @@ It should aim to blink at a 1 Hz rate. The snickerdoodle clock appears to be 50 
 https://groups.google.com/forum/#!topic/krtkl-snickerdoodle/kD9G4dZh_Mg
 and the counter goes to 25M
 
-What voltage to expect on the output pin?
+What voltage to expect on the output pin? The voltage is configurable using pin 3 to set the reference voltage. The reference voltage range can be between 1.2 and 3.3 Volts. See the [[https://krtkl.com/resources/faqs/][faq]], here's the quote:
 
+#+begin_quote
+The voltage levels for the FPGA I/O pins (JA1, JA2, JB1, JB2, JC1) are settable to between 1.2V and 3.3V.
+
+snickerdoodle one has two independent “banks” of 50 FPGA I/O pins (JAx and JBx); each can be set to any I/O voltage in the aforementioned range. snickerdoodle black adds a third independent FPGA I/O bank of 25 I/O pins (JC1).
+
+A 3.3V power supply output is supplied on each FPGA I/O connector, which can be used with a single jumper to set the I/O voltage to 3.3V for that bank without any additional external components. However, to use an I/O voltage other than 3.3V (1.2V to < 3.3V), that voltage must be supplied to the I/O bank. The microprocessor I/O (J3) have a fixed voltage of 1.8V. Note: this is required to support Ethernet on the baseboards, as RGMII does not support I/O voltages above 2.5V. The analog, audio, JTAG etc. I/O on J2 all have a fixed I/O voltage of 3.3V.
+#+end_quote
+
+My board came with a jumper connecting pins 1 and 3 on JA1, JB1 and JC1. I expect the voltage to be 3.3V on the output pins. Verified the voltage with a multimeter. 
 
 
 * using vivado to create bitstream
