@@ -62,11 +62,15 @@ This brings up the "New Project Summary" window. Which looks OK. This is a depar
 The Vivado IDE now appears and looks like this
 [[file:img/vivado_ide_initial_display.png]]
 
+*** Create Block Diagram
+
 The next step is to crate a block diagram. This can be done in the IDE. On the left panel called "Flow Navigator" there is a section called "IP INTEGRATOR" with a sub-section called "Create Block Design" select it and the "Create Block Design" window appears. I don't change anything, and click OK.
 [[file:img/vivado_create_block_design.png]]
 
 A progress bar will appear and then the IDE will update to show the "BLOCK DESIGN" display
 [[file:img/vivado_ide_block_design.png]]
+
+*** Add Parts
 
 Now we need to add parts. First add the Zynq processor. Click on the "+" and a search box appears. Search for Zynq. I had only one option and picked it. The IDE updates with a block diagram of the Zynq.
 [[file:img/vivado_block_design_add_zynq.png]]
@@ -79,11 +83,11 @@ The "Run Block Automation" window warns that doing this cannot be undone. I know
 After running the "Run Block Automation" part of the tutorial, I end up with a different result. The screen looks just like the tutorial before I run block automation, and after, it does not look the same as the tutorial. It looks like
 [[file:img/vivado_after_run_build_automation.png]]
 
-** TODO Investigate difference between difference snickerdoodle boards in Vivado IDE setup.
+I did investigate starting from scratch and using the generic snickerdoodle Development Platform at the "New Project Default Part" stage, but ended up with the same result after running build automation. So, I'll stick with the black board. I'll have to research what the extra connections are in my setup.
 
- - go back and redo setup from scratch with generic snickerdoodle board.
+*** TODO research the Zynq 7 connections.
 
-
+*** Make connections
 
 At this point, try to follow the craftdrones tutorial as best as possible. Hook up FCLK_CLK0 to M_AXI_GP0_ACLK. 
 
@@ -100,6 +104,8 @@ I was able to make the error go away by double clicking on the "ZYNQ7 Processing
 [[file:img/s_axi_acp_interface_tick_off.png]]
 Click the "OK" button,  revalidate the design (F6) and the errors clear. The diagram now looks like this:
 [[file:img/diagram_after_fix.png]]
+
+** Add constraints
 
 When I get to adding constraints, the tutorial references a krtkl git repo 
 https://github.com/krtkl/snickerdoodle-examples
