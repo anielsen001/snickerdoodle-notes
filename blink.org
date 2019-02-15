@@ -50,10 +50,25 @@ This brings up the "New Project Add Constraints" window, click "Next"
 This brings up the "New Project Default Part" window. There are two tabs, "Parts" and "Boards".  Select "Boards" and then I select the "snickerdoodle Black Development Platform" because that's what I have. The screenshot is expanded to show the most relevant information about the board rev number (4 in this case) and file version (1.0 in this case). Click "Next".
 [[file:img/vivado_new_project_default_part.png]]
 
-This brings up the "New Project Summary" window. Which looks OK. This is a departure from the Craft Drones tutorial which chooses the snickerdoodle Dev platform although there is some inconsistency about which board the Craft Drones tutorial is targeting later on. I'm using a Black so I chose this option.
+This brings up the "New Project Summary" window. Which looks OK. This is a departure from the Craft Drones tutorial which chooses the snickerdoodle Dev platform although there is some inconsistency about which board the Craft Drones tutorial is targeting later on. I'm using a Black so I chose this option. Review this and click "Finish".
 [[file:img/vivado_new_project_summary.png]]
 
-When I get to the "Run Block Automation" part of the tutorial, I end up with a different result. The screen looks just like the tutorial before I run block automation, and after, it does not look the same as the tutorial. It looks like
+The Vivado IDE now appears and looks like this
+[[file:img/vivado_ide_initial_display.png]]
+
+The next step is to crate a block diagram. This can be done in the IDE. On the left panel called "Flow Navigator" there is a section called "IP INTEGRATOR" with a sub-section called "Create Block Design" select it and the "Create Block Design" window appears. I don't change anything, and click OK.
+[[file:img/vivado_create_block_design.png]]
+
+A progress bar will appear and then the IDE will update to show the "BLOCK DESIGN" display
+[[file:img/vivado_ide_block_design.png]]
+
+Now we need to add parts. First add the Zynq processor. Click on the "+" and a search box appears. Search for Zynq. I had only one option and picked it. The IDE updates with a block diagram of the Zynq.
+[[file:img/vivado_block_design_add_zyng.png]]
+
+There is a green bar in the Diagram window that has a "Run Block Automation" link. Selecting this link will cause Vivado to link the Zynq processor up to components specific to our board (snickerdoodle black in this case). Selecting the link brings up the "Run Block Automation" screen. I don't change anything here, click "OK" and a progress bar appears.
+[[file:img/vivado_run_block_automation.png]]
+
+After running the "Run Block Automation" part of the tutorial, I end up with a different result. The screen looks just like the tutorial before I run block automation, and after, it does not look the same as the tutorial. It looks like
 [[file:img/vivado_after_run_build_automation.png]]
 
 At this point, try to follow the craftdrones tutorial as best as possible. Hook up FCLK_CLK0 to M_AXI_GP0_ACLK. 
