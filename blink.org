@@ -32,6 +32,27 @@ see: http://www.craftdrones.com/blog/create-snickerdoodle-blink-project as an ex
 I have board rev4 and the tutorial is board rev3. 
 I'm using vivado 2018.3, the tutorial is 2017.2
 
+The Vivado 2018.3 on Ubuntu 16.04 start screen looks like 
+[[file:img/vivado_start_screen.png]]
+
+In the quick start section, click of "Create Project >" and the New Project Screen appears. I filled it in as shown. With the "create project subdirectory" box checked, Vivado will create the blink3 subdirectory under the project location.
+[[file:img/vivado_create_new_project.png]]
+
+Click "Next" and the "Project Type" screen appears. Select "RTL Project" radio button, then click "Next".
+[[file:img/vivado_new_project_project_type.png]]
+
+This brings up the "New Project Add Sources" window, click "Next"
+[[file:img/vivado_new_project_add_sources.png]]
+
+This brings up the "New Project Add Constraints" window, click "Next"
+[[file:img/vivado_new_project_add_constraints.png]]
+
+This brings up the "New Project Default Part" window. There are two tabs, "Parts" and "Boards".  Select "Boards" and then I select the "snickerdoodle Black Development Platform" because that's what I have. The screenshot is expanded to show the most relevant information about the board rev number (4 in this case) and file version (1.0 in this case). Click "Next".
+[[file:img/vivado_new_project_default_part.png]]
+
+This brings up the "New Project Summary" window. Which looks OK. This is a departure from the Craft Drones tutorial which chooses the snickerdoodle Dev platform although there is some inconsistency about which board the Craft Drones tutorial is targeting later on. I'm using a Black so I chose this option.
+[[file:img/vivado_new_project_summary.png]]
+
 When I get to the "Run Block Automation" part of the tutorial, I end up with a different result. The screen looks just like the tutorial before I run block automation, and after, it does not look the same as the tutorial. It looks like
 [[file:img/vivado_after_run_build_automation.png]]
 
