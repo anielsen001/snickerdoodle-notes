@@ -63,7 +63,7 @@ A progress bar will appear and then the IDE will update to show the "BLOCK DESIG
 [[file:img/vivado_ide_block_design.png]]
 
 Now we need to add parts. First add the Zynq processor. Click on the "+" and a search box appears. Search for Zynq. I had only one option and picked it. The IDE updates with a block diagram of the Zynq.
-[[file:img/vivado_block_design_add_zyng.png]]
+[[file:img/vivado_block_design_add_zynq.png]]
 
 There is a green bar in the Diagram window that has a "Run Block Automation" link. Selecting this link will cause Vivado to link the Zynq processor up to components specific to our board (snickerdoodle black in this case). Selecting the link brings up the "Run Block Automation" screen. I don't change anything here, click "OK" and a progress bar appears.
 [[file:img/vivado_run_block_automation.png]]
