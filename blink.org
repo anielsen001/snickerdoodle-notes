@@ -163,6 +163,7 @@ craftdrones tutorial explains:
 
 Currently stuck, the bitstream loads, white LED flashes, and there is nothing on the output pin when connected to an LED nor when connected directly to a scope probe. Need to work back and find the error.
 
+There's a related issue in the krtkl forum https://krtkl.com/resources/forums/topic/trouble-programming-pl-over-jtag-in-vivado-running-ubuntu/ but I think I've already taken care of this.
 
 ** load from linux
 
