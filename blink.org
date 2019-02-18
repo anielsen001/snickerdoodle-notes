@@ -30,7 +30,7 @@ My board came with a jumper connecting pins 1 and 3 on JA1, JB1 and JC1. I expec
 see: http://www.craftdrones.com/blog/create-snickerdoodle-blink-project as an example.
 
 I have board rev4 and the tutorial is board rev3. 
-I'm using vivado 2018.3, the tutorial is 2017.2
+I'm using vivado 2018.3, the tutorial is 2017.2.
 
 ** Start up Vivado
 
@@ -85,6 +85,8 @@ After running the "Run Block Automation" part of the tutorial, I end up with a d
 
 I did investigate starting from scratch and using the generic snickerdoodle Development Platform at the "New Project Default Part" stage, but ended up with the same result after running build automation. So, I'll stick with the black board. I'll have to research what the extra connections are in my setup.
 
+I found some comments in a forum that the Vivado version might matter, so I installed Vivado 2017.2, the version from the tutorial and got the same results.
+
 *** TODO research the Zynq 7 connections.
 
 *** Make connections
@@ -125,6 +127,12 @@ After bitstream generation is complete, this window should appear:
 
 Selecting "View Reports" and "OK" will return to vivado with a reports tab in the bottom pane. Double clicking on any of those lines will open a report tab in the top right pane with the contents of that report. Some of the reports are greyed out and cannot be clicked on.
 [[file:img/vivado_view_reports.png]]
+
+I found that there were some warnings after creating the bitstream, namely
+#+begin_quote
+[Designutils 20-3303] unexpected site type 'IOPAD' in HDPYFinalizeIO
+#+end_quote
+This Xilinx forum https://forums.xilinx.com/t5/Implementation/unexpected-site-type-IOPAD-in-HDPYFinalizeIO/td-p/923303 indicates that these are a known issue and will be fixed in a future version, so I'm ignoring these.
 
 Next, find the bitstream file. 
 #+begin_src
