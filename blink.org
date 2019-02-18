@@ -8,9 +8,9 @@ https://numato.com/kb/styx-use-xilinx-zynq-ps-pll-clocks-fpga-fabric/
 Create the VHDL code to blink the LED. Here's an example:
 http://www.craftdrones.com/blog/august-22nd-2017
 
-It should aim to blink at a 1 Hz rate. The snickerdoodle clock appears to be 50 MHz
-https://groups.google.com/forum/#!topic/krtkl-snickerdoodle/kD9G4dZh_Mg
-and the counter goes to 25M
+It should aim to blink at a 1 Hz rate. The snickerdoodle clock appears to be 50 MHz https://groups.google.com/forum/#!topic/krtkl-snickerdoodle/kD9G4dZh_Mg
+and the counter goes to 25M. You can find the clock frequency in the FCLK_CLK by double-clicking on the Zynq IP in the vivado display and selecting "Clock Configuration" 
+[[file:img/vivado_recustomize_fclk_setting.png]]
 
 What voltage to expect on the output pin? The voltage is configurable using pin 3 to set the reference voltage. The reference voltage range can be between 1.2 and 3.3 Volts. See the [[https://krtkl.com/resources/faqs/][faq]], here's the quote:
 
@@ -100,7 +100,7 @@ At the validation step, I get this error:
 
 Now I'm stuck and cannot continue.
 
-I was able to make the error go away by double clicking on the "ZYNQ7 Processing System" modules in the diagram. Selecting "PS-PL Configuration" expanding the "ACP Slave AXI Interface" and unchecking "S AXI ACP interface"
+I was able to make the error go away by double clicking on the "ZYNQ7 Processing System" module in the diagram to bring up the "Re-customize IP" window. Selecting "PS-PL Configuration" expanding the "ACP Slave AXI Interface" and unchecking "S AXI ACP interface"
 [[file:img/s_axi_acp_interface_tick_off.png]]
 Click the "OK" button,  revalidate the design (F6) and the errors clear. The diagram now looks like this:
 [[file:img/diagram_after_fix.png]]
