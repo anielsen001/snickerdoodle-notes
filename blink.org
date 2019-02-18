@@ -2,6 +2,9 @@
 
 * blink ip 
 
+another example
+https://github.com/mng2/snickerdoodle-hello-world
+
 here's a second tutorial on the zynq clocks
 https://numato.com/kb/styx-use-xilinx-zynq-ps-pll-clocks-fpga-fabric/
 
