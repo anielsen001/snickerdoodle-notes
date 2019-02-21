@@ -1,6 +1,15 @@
 #+TITLE: create blink project
 
-* blink ip 
+* References
+
+This seems to supercede the craftdrones tutorial:
+http://www.ritravvenlab.com/cpet-563.html
+https://github.com/ritravvenlab
+
+Craft Drones tutorial: create the VHDL code to blink the LED. Here's an example:
+http://www.craftdrones.com/blog/august-22nd-2017
+
+https://krtkl.com/resources/forums/topic/test-pl-reconfiguration-using-sysfs-bin-vs-u-boot-system-bit/
 
 another example
 https://github.com/mng2/snickerdoodle-hello-world
@@ -8,8 +17,8 @@ https://github.com/mng2/snickerdoodle-hello-world
 here's a second tutorial on the zynq clocks
 https://numato.com/kb/styx-use-xilinx-zynq-ps-pll-clocks-fpga-fabric/
 
-Create the VHDL code to blink the LED. Here's an example:
-http://www.craftdrones.com/blog/august-22nd-2017
+
+* blink details
 
 It should aim to blink at a 1 Hz rate. The snickerdoodle clock appears to be 50 MHz https://groups.google.com/forum/#!topic/krtkl-snickerdoodle/kD9G4dZh_Mg
 and the counter goes to 25M. You can find the clock frequency in the FCLK_CLK by double-clicking on the Zynq IP in the vivado display and selecting "Clock Configuration" 
