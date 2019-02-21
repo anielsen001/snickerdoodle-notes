@@ -129,7 +129,7 @@ Click "Yes"
 You return to the "Manage IP" screen. 
 file:img/vivado_manage_ip_finish.png
 
-The new blick IP now appears. 
+The new blink IP now appears. 
 
 * add to configuration management
 
@@ -137,3 +137,14 @@ The new blick IP now appears.
 apn@aria:~/proj/snickerdoodle/snickerdoodle-blink$ cd ip/blink
 apn@aria:~/proj/snickerdoodle/snickerdoodle-blink/ip/blink$ git add blink.vhd component.xml xgui/
 #+end_src
+
+* editing IP 
+
+In the "Manage IP" window, right click on the "blink_v1_0" ip and select "Edit in IP Packager". This brings the packager back.
+
+Select "Customization GUI"
+[[file:img/vivado_customization_gui.png]]
+
+Under "Layout" "Page 0" "Max Count", right click on "Mac Count" and select "Edit Parameter". 
+[[file:img/vivado_edit_ip_parameter.png]]
+
