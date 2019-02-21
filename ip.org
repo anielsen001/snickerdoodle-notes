@@ -131,4 +131,9 @@ file:img/vivado_manage_ip_finish.png
 
 The new blick IP now appears. 
 
+* add to configuration management
 
+#+begin_src
+apn@aria:~/proj/snickerdoodle/snickerdoodle-blink$ cd ip/blink
+apn@aria:~/proj/snickerdoodle/snickerdoodle-blink/ip/blink$ git add blink.vhd component.xml xgui/
+#+end_src
