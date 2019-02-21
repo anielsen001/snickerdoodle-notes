@@ -105,7 +105,11 @@ I did investigate starting from scratch and using the generic snickerdoodle Deve
 I found some comments in a forum that the Vivado version might matter, so I installed Vivado 2017.2, the version from the tutorial and got the same results.
 
 The ritravvenlab tutorial does show the same result I have. However, they solve the S_AXI_ACP_ACLK issue differently, the connect it to the M_AXI_GP0_ACLK. So I tried this again in a completely fresh vivado project, following their pinout selection and constraints file. No dice. I get nothing on the new pin, JA1.7.  When I follow the RIT instructions I do get a warning
-[[file:img/vivado_run_automation_warning.png]] They don't show the console, so I don't know if they get this warning or not.
+[[file:img/vivado_run_automation_warning.png]] They don't show the console, so I don't know if they get this warning or not. The warning says
+#+begin_quote
+WARNING: [BD 41-927] Following properties on pin /blink_0/clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=design_1_processing_system7_0_0_FCLK_CLK0 
+#+end_quote
 
 I tried something simpler, toggling the GPIO pins from linux, [[file:gpio-toggle.org]]. This worked, which so far is the only thing that's gone smoothly with this board.
 
