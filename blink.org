@@ -111,7 +111,9 @@ WARNING: [BD 41-927] Following properties on pin /blink_0/clk have been updated 
 	CLK_DOMAIN=design_1_processing_system7_0_0_FCLK_CLK0 
 #+end_quote
 
-I tried something simpler, toggling the GPIO pins from linux, [[file:gpio-toggle.org]]. This worked, which so far is the only thing that's gone smoothly with this board.
+I tried something simpler, toggling the GPIO pins from linux, [[file:gpio-toggle.org]]. This worked, which so far is the only thing that's gone smoothly with the snickerdoodle.
+
+In an effort to track what I'm doing more closely, I created a new git repo snickerdoodle-blink. 
 
 *** TODO research the Zynq 7 connections.
 
