@@ -1,0 +1,134 @@
+#+TITLE: Create IP
+
+These are notes to create the blink IP on the snickerdoodle board.
+
+* References
+
+There are two main references
+ - http://www.craftdrones.com/blog/august-22nd-2017
+ - http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip
+
+They are both by the same author. The former is older, but contains more commentary
+The latter is newer, but contains almost no comments.
+
+Also see my github which tracks the details for this project.
+ - https://github.com/anielsen001/snickerdoodle-blink
+
+* set up directory structure
+
+Create the top level blink project structure
+#+begin_src
+apn@aria:~/proj/snickerdoodle$ mkdir  snickerdoodle-blink
+#+end_src
+
+Create an IP subdirectory
+#+begin_src
+apn@aria:~/proj/snickerdoodle$ cd snickerdoodle-blink
+apn@aria:~/proj/snickerdoodle/snickerdoodle-blink$ mkdir ip
+#+end_src
+And a blink subdirectory
+
+#+begin_src
+apn@aria:~/proj/snickerdoodle/snickerdoodle-blink$ cd ip
+apn@aria:~/proj/snickerdoodle/snickerdoodle-blink/ip$ mkdir blink
+#+end_src
+
+* download blink vhdl file
+
+#+begin_src
+apn@aria:~/proj/snickerdoodle/snickerdoodle-blink/ip$ cd blink
+apn@aria:~/proj/snickerdoodle/snickerdoodle-blink/ip/blink$ wget http://www.ritravvenlab.com/uploads/1/1/8/4/118484574/blink.vhd
+#+end_src
+
+* start vivado
+
+#+begin_src
+apn@aria:~/proj/snickerdoodle$ /usr/local/xilinx/Vivado/2018.3/bin/vivado
+#+end_src
+
+The start screen appears
+[[file:img/vivado_start_screen.png]]
+
+Under the light blue "Tasks" section, click on "Manage IP" which will open a menu with two options, select "New IP Location...". This brings up a screen to create a new IP location
+[[file:img/vivado_create_new_custom_ip_location.png]]
+
+Click the "Next" button, which brings up the "Manage IP settings" window
+[[file:img/vivado_manage_ip_settings.png]]
+
+Next to "Part:" select the ellipsis button "..."
+
+There are two tabs "parts" and "boards". The "Parts" tab is defaulted, select "Boards"
+[[file:img/vivado_select_device_boards.png]]
+
+I have a snickerdoodle black so I selected it. Then click "OK"
+
+You are returned to the "Manage IP Settings" screen. 
+
+Under "IP location" select the ellipsis and pick the location of the IP directory.
+[[file:img/vivado_manage_ip_settings_done.png]]
+
+Click "Finish"
+
+A progress bar appears while things happen.
+
+And the Project Manager screen appears
+[[file:img/vivado_manage_ip_project_manager.png]]
+
+Go to the "Tools" menu, select "Create and Package New IP..."
+
+The wizard screen will appear.
+[[file:img/vivado_create_and_package_new_ip_wizard.png]]
+
+Click "Next>"
+
+The following wizard screen appears.
+[[file:img/vivado_create_and_package_new_ip_wizard_2.png]]
+
+It's already set to the option we want "Package a specified directory" so we click "Next>"
+
+Under the directory line, select the ellipsis and browse to the blink directory created earlier
+[[file:img/vivado_package_specified_directory.png]]
+
+Click "Next>"
+
+The next screen that appears is the "Edit in IP Packager Project Name
+[[file:img/vivado_edit_ip_packager_project_name.png]]
+
+Don't change anything here. Click "Next>"
+
+The next screen is the "New IP Creation" which has a summary of what will happen next.
+[[file:img/vivado_new_ip_creation.png]]
+
+Click "Finish"
+
+Progress bar appears followed by the packager window.
+[[file:img/vivado_ip_packager.png]]
+
+Selecting "Run Synthesis", under the "Flow Navigator" panel on the left, will verify that the code compiles. This brings up the "Launch Runs" screen.
+[[file:img/vivado_launch_runs.png]]
+
+Click "OK" and wait a bit. 
+
+The "Synthesis Completed" screen will appear
+[[file:img/vivado_synthesis_completed.png]]
+
+Click "Cancel"
+
+Under the "Packaging Steps" pane under "Package IP - blink" the last option is "Review and Package". Select it. 
+
+The pane to the right changes and a "Package IP" button appears at the bottom.
+[[file:img/vivado_package_ip.png]]
+
+Select the "Package IP" button.
+
+This runs quickly and a "Close Project" window appears. 
+[[file:img/vivado_close_project_package_ip.png]]
+
+Click "Yes"
+
+You return to the "Manage IP" screen. 
+file:img/vivado_manage_ip_finish.png
+
+The new blick IP now appears. 
+
+
