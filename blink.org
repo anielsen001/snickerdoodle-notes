@@ -39,10 +39,15 @@ My board came with a jumper connecting pins 1 and 3 on JA1, JB1 and JC1. I expec
 
 * using vivado to create bitstream
 
-see: http://www.craftdrones.com/blog/create-snickerdoodle-blink-project as an example.
+see: http://www.craftdrones.com/blog/create-snickerdoodle-blink-project as an example. There is a newer tutorial by the same author that shows a demo with a more recent vivado. http://www.ritravvenlab.com/cpet-563-blog/february-03rd-2019 however it's missing some of the commentary that the original included. 
 
-I have board rev4 and the tutorial is board rev3. 
-I'm using vivado 2018.3, the tutorial is 2017.2.
+This table summarizes to the best of my knowledge the differences between my setup and the various tutorial/demo pages.
+|                | Vivado | Board Rev  | breakyBreaky Rev |
+|----------------+--------+------------+------------------|
+| Mine           | 2018.3 | black 4.11 |              4.0 |
+| craftdrones    | 2017.2 | black? 3   |                3 |
+| RIT ravven lab | 2018.2 | black?     |                ? |
+
 
 ** Start up Vivado
 
@@ -92,12 +97,16 @@ There is a green bar in the Diagram window that has a "Run Block Automation" lin
 
 The "Run Block Automation" window warns that doing this cannot be undone. I know that I've differed from the Craft Drones tutorial by selecting a snickerdoodle black board. I don't know if this is the difference or not.
 
-After running the "Run Block Automation" part of the tutorial, I end up with a different result. The screen looks just like the tutorial before I run block automation, and after, it does not look the same as the tutorial. It looks like
+After running the "Run Block Automation" part of the tutorial, I end up with a different result. The screen looks just like the craftdrones tutorial before I run block automation, and after, it does not look the same as the tutorial. It looks like
 [[file:img/vivado_after_run_build_automation.png]]
 
 I did investigate starting from scratch and using the generic snickerdoodle Development Platform at the "New Project Default Part" stage, but ended up with the same result after running build automation. So, I'll stick with the black board. I'll have to research what the extra connections are in my setup.
 
 I found some comments in a forum that the Vivado version might matter, so I installed Vivado 2017.2, the version from the tutorial and got the same results.
+
+The ritravvenlab tutorial does show the same result I have. However, they solve the S_AXI_ACP_ACLK issue differently, the connect it to the M_AXI_GP0_ACLK. So I tried this again in a completely fresh vivado project, following their pinout selection and constraints file. No dice. I get nothing on the new pin, JA1.7
+
+I tried something simpler, toggling the GPIO pins from linux, [[file:gpio-toggle.org]]. This worked, which so far is the only thing that's gone smoothly with this board.
 
 *** TODO research the Zynq 7 connections.
 
@@ -168,7 +177,7 @@ On the boot partition of the [[file:sd-card.org][SD card]] you can put the bitst
 #+begin_src
 snickerdoodle> boot
 #+end_src
-to get the bitstream to load. If the bitstream loads to the Zynq FPGA there will be a white LED on the board that flases short-long fade in to indicate that the bitstream loaded.
+to get the bitstream to load. If the bitstream loads to the Zynq FPGA there will be a white LED on the board that flashes short-long fade in to indicate that the bitstream loaded.
 
 craftdrones tutorial explains:
 [[http://www.craftdrones.com/blog/august-22nd-20178830744][setup snickerdoodle sd card]]
