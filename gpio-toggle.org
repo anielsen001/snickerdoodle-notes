@@ -1,0 +1,25 @@
+#+TITLE: Toggle GPIO Pins
+
+The GPIO pins can be toggled directly from a stock booted SD image. See:
+https://krtkl.com/resources/forums/topic/what-documentation-describes-commands-to-toggle-io-with-a-default-black-sd-image/
+
+Following this procedure, I was able to toggle the pins with 1.7 Volts.
+
+#+begin_quote
+With the default image you can toggle the GPIO on J3 from the Linux prompt. The other I/O are FPGA connected and thus need to be configured by the programmable logic for functionality.
+
+To toggle the I/O you will need to control the GPIO using sysfs in Linux. You can do this in a few steps:
+
+1. Export the GPIO that you’d like to control.
+a. You will need to find the GPIO number that corresponds to the pin you want to control. The GPIO numbers for MIO pins start at 906 and the MIO pins on J3 are MIO[39:16] and MIO[53:32]. So to toggle the I/O on J3 pin 5, you will use GPIO number 906 + MIO number 16 = 922.
+$ sudo bash -c ‘echo 922 > /sys/class/gpio/export’
+
+2. Set the GPIO direction.
+a. After exporting the pin, a directory structure will be created in the /sys/class/gpio directory that contains files used to control the behavior of the GPIO pin.
+$ sudo bash -c ‘echo out > /sys/class/gpio/gpio922/direction’
+
+3. Set the GPIO level
+$ sudo bash -c ‘echo 1 > /sys/class/gpio/gpio922/value’
+
+Let me know if this helps you get started. Depending on how you configure them, the FPGA I/O pins can be controlled using similar command line interfacing.
+#+ene_quote
