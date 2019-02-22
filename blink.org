@@ -53,11 +53,12 @@ I have tried several different versions of vivado
 2018.2
 2018.3
 
-This is to try and match exactly what various tutorials use. Several answers to questions have suggested that the specific version matters: https://github.com/krtkl/snickerdoodle-examples/issues/3
-https://forums.xilinx.com/t5/Implementation/unexpected-site-type-IOPAD-in-HDPYFinalizeIO/td-p/923303
+This is to try and match exactly what various tutorials use. Several answers to questions have suggested that the specific version matters: 
+ - https://github.com/krtkl/snickerdoodle-examples/issues/3
+ - https://forums.xilinx.com/t5/Implementation/unexpected-site-type-IOPAD-in-HDPYFinalizeIO/td-p/923303
 
 I've also been told the opposite, that it should not matter for the blink demo.
-https://krtkl.com/resources/forums/topic/blink-tutorial-questions/#post-19369
+ - https://krtkl.com/resources/forums/topic/blink-tutorial-questions/#post-19369
 
 
 ** Start up Vivado
