@@ -1,0 +1,72 @@
+#+TITLE: Version control with Vivado sources
+
+I wanted to save my results with https://github.com/mng2/snickerdoodle-hello-world. I had to convert the project to use a snickerdoodle black in Vivado and create the regenerate tcl script for my changes. I forked the hello world project to https://github.com/anielsen001/snickerdoodle-hello-world. 
+
+I loosely followed instructions here http://www.fpgadeveloper.com/2014/08/version-control-for-vivado-projects.html, but these are out of date for my version of Vivado (2018.2); I'm using the same version of Vivado and OS as in the original repo. 
+
+To create a tcl script from Vivado, choose "File" -> "Project" -> "Write Tcl..." and this dialog box appears:
+[[file:img/vivado_write_project_to_tcl.png]]
+Create a name for the file to write and select "OK". In my example, "black_regen.tcl"
+
+Add and commit the code to git:
+#+begin_src sh
+apn@aria:~/proj/snickerdoodle/snickerdoodle-hello-world$ git add black_regen.tcl
+apn@aria:~/proj/snickerdoodle/snickerdoodle-hello-world$ git commit -m"added black_regen.tcl, a script to regenerate a vivado project for the snickerdoodle black"
+[master 79b4c5b] added black_regen.tcl, a script to regenerate a vivado project for the snickerdoodle black
+ 1 file changed, 449 insertions(+)
+ create mode 100644 black_regen.tcl
+apn@aria:~/proj/snickerdoodle/snickerdoodle-hello-world$ 
+#+end_src
+
+Create a tcl script to generate the block diagram. Open the block diagram and then "File"->"Export"->"Export Block Design..." which brings up a dialog to save the file. Save it and ad it to git. I put it at the top level as base_block_design.tcl
+
+Then edit the black_regen.tcl script to add teh following lines at the bottom of the script.
+#+begin_src
+# create the block design 
+source $origin_dir/base_block_design.tcl
+
+# generate the wrapper
+set design_name [get_bd_designs]
+make_wrapper -files [get_files $design_name.bd] -top -import
+#+end_src
+
+Finally, the script needs to update the IP to avoid an out-of-date IP warning. Add this right after the project properties and right before adding any data sources
+#+begin_src
+# Rebuild user ip_repo's index before adding any source files
+update_ip_catalog -rebuild
+#+end_src
+
+Now test if this works. 
+
+Clone a new version of the repo:
+#+begin_src
+apn@aria:~/proj/snickerdoodle$ mkdir temp
+apn@aria:~/proj/snickerdoodle$ cd temp
+apn@aria:~/proj/snickerdoodle/temp$ git clone git@github.com:anielsen001/snickerdoodle-hello-world.git
+Cloning into 'snickerdoodle-hello-world'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 26 (delta 0), reused 2 (delta 0), pack-reused 23
+Receiving objects: 100% (26/26), 23.46 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (7/7), done.
+Checking connectivity... done.
+apn@aria:~/proj/snickerdoodle/temp$
+#+end_src
+
+Restart vivado
+#+begin_src
+apn@aria:~/proj/snickerdoodle/temp$ /usr/local/xilinx/Vivado/2018.2/bin/vivado
+
+****** Vivado v2018.2 (64-bit)
+  **** SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+  **** IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+#+end_src
+
+In the Tcl console, cd to the directory with the newly cloned project.
+#+begin_src
+cd /home/apn/proj/snickerdoodle/temp/snickerdoodle-hello-world
+source black_regen.tcl
+#+end_src
+
