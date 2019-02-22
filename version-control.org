@@ -70,3 +70,4 @@ cd /home/apn/proj/snickerdoodle/temp/snickerdoodle-hello-world
 source black_regen.tcl
 #+end_src
 
+Select "Generate bitstream"
