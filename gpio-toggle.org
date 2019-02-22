@@ -24,7 +24,7 @@ $ sudo bash -c ‘echo out > /sys/class/gpio/gpio922/direction’
 $ sudo bash -c ‘echo 1 > /sys/class/gpio/gpio922/value’
 
 Let me know if this helps you get started. Depending on how you configure them, the FPGA I/O pins can be controlled using similar command line interfacing.
-#+ene_quote
+#+end_quote
 
 * C code
 
