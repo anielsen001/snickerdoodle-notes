@@ -34,3 +34,8 @@ Here's another example that toggles the LED as GPIO pins:
 
 This demo used a snickerdoodle one board. I had to switch the board to a snickerdoodle black, but it worked without incident after that change. This will toggle pin JB1.4 and it will drive my LED setup.
 
+My fork includes modifications to use a snickerdoodle black.
+
+Here's the working example photo
+[[file:img/gpio_toggle_hello.jpg]]
+
