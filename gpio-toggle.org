@@ -1,9 +1,11 @@
 #+TITLE: Toggle GPIO Pins
 
+* bash shell
+
 The GPIO pins can be toggled directly from a stock booted SD image. See:
 https://krtkl.com/resources/forums/topic/what-documentation-describes-commands-to-toggle-io-with-a-default-black-sd-image/
 
-Following this procedure, I was able to toggle the pins with 1.7 Volts.
+Following this procedure, I was able to toggle the pins with 1.7 Volts (all they'll can do).
 
 #+begin_quote
 With the default image you can toggle the GPIO on J3 from the Linux prompt. The other I/O are FPGA connected and thus need to be configured by the programmable logic for functionality.
@@ -23,3 +25,12 @@ $ sudo bash -c ‘echo 1 > /sys/class/gpio/gpio922/value’
 
 Let me know if this helps you get started. Depending on how you configure them, the FPGA I/O pins can be controlled using similar command line interfacing.
 #+ene_quote
+
+* C code
+
+Here's another example that toggles the LED as GPIO pins:
+ - https://github.com/mng2/snickerdoodle-hello-world (original)
+ - https://github.com/anielsen001/snickerdoodle-hello-world (my fork)
+
+This demo used a snickerdoodle one board. I had to switch the board to a snickerdoodle black, but it worked without incident after that change. This will toggle pin JB1.4 and it will drive my LED setup.
+
