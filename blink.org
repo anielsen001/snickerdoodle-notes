@@ -181,6 +181,29 @@ https://cdn.hackaday.io/files/7799333672416/snickerdoodle-book.pdf
 It would appear that the snickerdoodle manual might replace much of it:
 https://github.com/krtkl/snickerdoodle-manual
 
+I did a diversion with the GPIO pins and used https://github.com/mng2/snickerdoodle-hello-world 
+This example uses the JB1.4 pin to toggle an LED using a command line program from linux running on the sickerdoodle and it worked for me. So, I tried setting the LED pinout to the same pin and it worked also with the blink demo.
+
+This is what's in the working constraints files:
+#+begin_src
+### JB1.4 (IO_25_34)
+set_property PACKAGE_PIN    T19         [get_ports led]
+set_property IOSTANDARD     LVCMOS33    [get_ports led]
+#+end_src
+
+I disassembled my breakybreaky/snickerdoodle setup and tested continuity of all pins on the breakybreaky board and they seemed good. 
+
+So, reassemble the breakybreaky/snickerdoodle setup. Tar up the working vivado project and change its constraints to use the JA1.4 that failed previously and see if there is any difference after reseating the boards.
+
+Replace the constraints file with this for the test:
+#+begin_src
+### JA1.4 (IO_0_35)
+set_property PACKAGE_PIN    G14         [get_ports led]
+set_property IOSTANDARD     LVCMOS33    [get_ports led]
+#+end_src
+
+Now it works. Rinse and repeat a few times, inconsistent results. Appears to be a connection issue with the PA1 connection. Need to investigate this more.
+
 ** Generate the bitstream. 
 
 This will take some time.
