@@ -37,5 +37,6 @@ This demo used a snickerdoodle one board. I had to switch the board to a snicker
 My fork includes modifications to use a snickerdoodle black.
 
 Here's the working example photo
+
 [[file:img/gpio_toggle_hello.jpg]]
 
