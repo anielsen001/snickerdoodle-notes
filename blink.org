@@ -3,18 +3,18 @@
 * References
 
 This seems to supercede the craftdrones tutorial:
-http://www.ritravvenlab.com/cpet-563.html
-https://github.com/ritravvenlab
+ - http://www.ritravvenlab.com/cpet-563.html
+ - https://github.com/ritravvenlab
 
 Craft Drones tutorial: create the VHDL code to blink the LED. Here's an example:
-http://www.craftdrones.com/blog/august-22nd-2017
+ - http://www.craftdrones.com/blog/august-22nd-2017
 
 https://krtkl.com/resources/forums/topic/test-pl-reconfiguration-using-sysfs-bin-vs-u-boot-system-bit/
 
-another example
+another example:
 https://github.com/mng2/snickerdoodle-hello-world
 
-here's a second tutorial on the zynq clocks
+here's a tutorial on the zynq clocks
 https://numato.com/kb/styx-use-xilinx-zynq-ps-pll-clocks-fpga-fabric/
 
 
@@ -47,6 +47,17 @@ This table summarizes to the best of my knowledge the differences between my set
 | Mine           | 2018.3 | black 4.11 |              4.0 |
 | craftdrones    | 2017.2 | black? 3   |                3 |
 | RIT ravven lab | 2018.2 | black?     |                ? |
+
+I have tried several different versions of vivado
+2017.2
+2018.2
+2018.3
+
+This is to try and match exactly what various tutorials use. Several answers to questions have suggested that the specific version matters: https://github.com/krtkl/snickerdoodle-examples/issues/3
+https://forums.xilinx.com/t5/Implementation/unexpected-site-type-IOPAD-in-HDPYFinalizeIO/td-p/923303
+
+I've also been told the opposite, that it should not matter for the blink demo.
+https://krtkl.com/resources/forums/topic/blink-tutorial-questions/#post-19369
 
 
 ** Start up Vivado
@@ -139,11 +150,34 @@ Click the "OK" button,  revalidate the design (F6) and the errors clear. The dia
 
 When I get to adding constraints, the tutorial references a krtkl git repo 
 https://github.com/krtkl/snickerdoodle-examples
-which I cloned. This repo has been reorganized since the tutorial was created. All of the constraints files in the examples repo differ from the tutorial with diff, but this is not too important for this example. 
+which I cloned. This repo has been reorganized since the tutorial was created. All of the black constraints files in the examples repo differ from the tutorial with diff. The constraints files are missing the JC1 connectors. The pins we are interested in are the same in both files.
+
+#+begin_quote
+### JA1.4 (IO_0_35)
+set_property PACKAGE_PIN    G14         [get_ports {gpio0_tri_io[24]}]
+set_property IOSTANDARD     LVCMOS33    [get_ports {gpio0_tri_io[24]}]
+
+### JA1.5 (IO_L5P_T0_AD9P_35)
+set_property PACKAGE_PIN    E18         [get_ports {gpio0_tri_io[8]}]
+set_property IOSTANDARD     LVCMOS33    [get_ports {gpio0_tri_io[8]}]
+
+### JA1.6 (IO_L4N_T0_35)
+set_property PACKAGE_PIN    D20         [get_ports {gpio0_tri_io[11]}]
+set_property IOSTANDARD     LVCMOS33    [get_ports {gpio0_tri_io[11]}]
+
+### JA1.7 (IO_L5N_T0_AD9N_35)
+set_property PACKAGE_PIN    E19         [get_ports {gpio0_tri_io[9]}]
+set_property IOSTANDARD     LVCMOS33    [get_ports {gpio0_tri_io[9]}]
+#+end_quote
+
+The craftdrones tutorial used pin JA1.4 the RIT tutorial uses pin JA1.7. To follow the updated RIT tutorial, use a constraints files for JA1.7.
+
+The snickerdoodle black constraints file is here:
+https://github.com/krtkl/snickerdoodle-examples/blob/master/snickerdoodle-black/snickerdoodle_black_GPIO/snickerdoodle_black_GPIO.srcs/constrs_1/new/snickerdoodle_constraints.xdc
 
 The tutorial references the snickerdoodle book, but the link no longer exists. I found a copy here:
 https://cdn.hackaday.io/files/7799333672416/snickerdoodle-book.pdf
-It would appear that the snickerdoodle manual replaces much of this:
+It would appear that the snickerdoodle manual might replace much of it:
 https://github.com/krtkl/snickerdoodle-manual
 
 ** Generate the bitstream. 
@@ -161,6 +195,8 @@ I found that there were some warnings after creating the bitstream, namely
 [Designutils 20-3303] unexpected site type 'IOPAD' in HDPYFinalizeIO
 #+end_quote
 This Xilinx forum https://forums.xilinx.com/t5/Implementation/unexpected-site-type-IOPAD-in-HDPYFinalizeIO/td-p/923303 indicates that these are a known issue and will be fixed in a future version, so I'm ignoring these.
+
+Maybe this is the problem? I'm going to install vivado 2018.2 which is used in the RIT tutorial and see if that makes a difference.
 
 Next, find the bitstream file. 
 #+begin_src
