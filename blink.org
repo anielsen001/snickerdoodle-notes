@@ -304,16 +304,55 @@ apn@aria:~/proj/snickerdoodle/blinky2/blinky2.runs/impl_1$ ls *bit*
 design_1_wrapper.bit  design_1_wrapper.bit.bin  design_1_wrapper.bit.keep  write_bitstream.pb
 #+end_src
 
-* moving on
 
+* scripting vivado
 
+See:
+http://www.ritravvenlab.com/cpet-563-blog/snickerdoodle-scripting
 
-Moving on to the http://www.craftdrones.com/blog/snickerdoodle-scripting-part-1 page, I'm greeted with Chrome's Dangerous warning about malware infecting the page. <2019-02-10 Sun>
-Fortunately, I found a copy of the page with the way-back machine
-https://web.archive.org/web/20180528163631/http://www.craftdrones.com/blog/snickerdoodle-scripting-part-1
-and the way-back machine has the craftdrones archive here. 
-https://web.archive.org/web/*/http://www.craftdrones.com/*
-This archive is not 100% complete.
+set path
+#+begin_src
+export PATH="/usr/local/xilinx/Vivado/2018.2/bin":$PATH
+#+end_src
 
+code from https://github.com/ritravvenlab/ravven-vhdl
+the blink code is in https://github.com/ritravvenlab/ravven-vhdl/blink
+
+The tcl script referenced in the demo can be found in:
+#+begin_src
+./blink/hw/xilinx/project.tcl
+#+end_src
+It needs to be edited to generate the bit files
+#+begin_src
+# ##############################################################################
+# Dr. Kaputa
+# Vivado Scripting Utopia
+# SPDX-License-Identifier: BSD-3-Clause [https://spdx.org/licenses/]
+# ##############################################################################
+
+set projectName blink
+
+# 0: setup project, 1: setup and compile project
+set compileProject 1
+
+# 0: plain,  1: black,  2: blue
+set target 1
+
+# 0: leave messy, 1: blow away everything but sources and .bit file
+set cleanup 0
+
+#+end_src
+
+There is a windows batch file called startScript.bat that I modified into a linux/bash version and called startScript.sh
+#+begin_src
+#!/bin/sh
+
+VIVADO=/usr/local/xilinx/Vivado/2018.2/bin/vivado
+
+rm vivado.jou
+rm vivado.log
+$VIVADO -notrace -mode batch -source project.tcl
+#+end_src
+I added the path to Vivado explicitly to the script instead of needing to use the path.This does indeed generate the system.bit file. This needs to be tested with the board. 
 
 #  LocalWords:  bitstream vivado snickerdoodle krtkl xilinx
