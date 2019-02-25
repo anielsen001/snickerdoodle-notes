@@ -238,6 +238,40 @@ I have the breakyBreaky board so I should be able to do this, but I don't have t
 
 http://www.craftdrones.com/blog/program-snickerdoodle-via-jtag
 
+Got a diligent jtag HS-3 cable. The cable drivers need to be installed in linux for this to work. I found this which pointed me to a script installed with vivavdo https://forum.digilentinc.com/topic/1145-linux-drivers-for-arty-and-vivado-hw-manager/
+
+I found the script here:
+/usr/local/xilinx/Vivado/2018.3/data/xicom/cable_drivers/lin64/install_script/install_drivers
+
+It has to be run with sudo and it only worked from within the /usr/local/xilinx/Vivado/2018.3/data/xicom/cable_drivers/lin64/install_script directory. There seem to be path issues.
+#+begin_src
+cd /usr/local/xilinx/Vivado/2018.3/data/xicom/cable_drivers/lin64/install_script
+sudo ./install_drivers
+INFO: Installing cable drivers.
+INFO: Script name = ./install_drivers
+INFO: HostName = aria
+INFO: Current working dir = /usr/local/xilinx/Vivado/2018.3/data/xicom/cable_drivers/lin64/install_script/install_drivers
+INFO: Kernel version = 4.15.0-45-generic.
+INFO: Arch = x86_64.
+Successfully installed Digilent Cable Drivers
+--File /etc/udev/rules.d/52-xilinx-ftdi-usb.rules does not exist.
+--File version of /etc/udev/rules.d/52-xilinx-ftdi-usb.rules = 0000.
+--Updating rules file.
+--File /etc/udev/rules.d/52-xilinx-pcusb.rules does not exist.
+--File version of /etc/udev/rules.d/52-xilinx-pcusb.rules = 0000.
+--Updating rules file.
+
+INFO: Digilent Return code = 0
+INFO: Xilinx Return code = 0
+INFO: Xilinx FTDI Return code = 0
+INFO: Return code = 0
+INFO: Driver installation successful.
+CRITICAL WARNING: Cable(s) on the system must be unplugged then plugged back in order for the driver scripts to update the cables.
+#+end_src
+I had the cable unplugged, but still received this warning. Reconnecting the cable to usb causes the snickerdoodle to reset.
+
+Now you can go into vivado an open the hardware manager and program the snickerdoodle with any bitstream file. This is much easier than swapping sd cards in and out.
+
 ** load from SD-card boot partition
 
 On the boot partition of the [[file:sd-card.org][SD card]] you can put the bitstream into a file called system.bit. Then boot the snickerdoodle with the SD-Card. You must do 
@@ -354,5 +388,17 @@ rm vivado.log
 $VIVADO -notrace -mode batch -source project.tcl
 #+end_src
 I added the path to Vivado explicitly to the script instead of needing to use the path.This does indeed generate the system.bit file. This needs to be tested with the board. 
+
+* blink with a twist
+
+This is a tutorial of creating a modified blink project and creating it with the scripting.
+
+http://www.ritravvenlab.com/cpet-563-blog/blink-with-a-twist
+There is a repo with code here:
+https://github.com/ritravvenlab/ravven-vhdl
+I forked it so that I could track any changes of my own
+https://github.com/anielsen001/ravven-vhdl
+
+I put the bash script I generated previously into my fork in the blink directory.
 
 #  LocalWords:  bitstream vivado snickerdoodle krtkl xilinx
