@@ -2,20 +2,31 @@
 
 * References
 
-This seems to supercede the craftdrones tutorial:
+** blink via FPGA 
+
+This supercedes the craftdrones tutorial:
  - http://www.ritravvenlab.com/cpet-563.html
  - https://github.com/ritravvenlab
 
 Craft Drones tutorial: create the VHDL code to blink the LED. Here's an example:
  - http://www.craftdrones.com/blog/august-22nd-2017
 
+** blink GPIO pins
+
 https://krtkl.com/resources/forums/topic/test-pl-reconfiguration-using-sysfs-bin-vs-u-boot-system-bit/
 
 another example:
 https://github.com/mng2/snickerdoodle-hello-world
 
+** clocks
+
 here's a tutorial on the zynq clocks
 https://numato.com/kb/styx-use-xilinx-zynq-ps-pll-clocks-fpga-fabric/
+
+** AXI interface
+
+
+http://www.fpgadeveloper.com/2014/08/using-the-axi-dma-in-vivado.html
 
 
 * blink details
@@ -400,5 +411,13 @@ I forked it so that I could track any changes of my own
 https://github.com/anielsen001/ravven-vhdl
 
 I put the bash script I generated previously into my fork in the blink directory.
+
+I ran through the tutorial twice from scratch for blink with a twist and got positive and negative results in Vivado at the run synthesis stage. I believe that it's related to choosing the correct file path when generating IP.
+
+With a working project, it's easy to change the blink rate by editing the constant block. Faster than visual rates can be observed on an oscilloscope. However, generating the new bitstream is slow and it would be nice to be able to change the blink rate on the fly.
+
+
+
+
 
 #  LocalWords:  bitstream vivado snickerdoodle krtkl xilinx
