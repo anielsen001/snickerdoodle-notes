@@ -416,8 +416,18 @@ I ran through the tutorial twice from scratch for blink with a twist and got pos
 
 With a working project, it's easy to change the blink rate by editing the constant block. Faster than visual rates can be observed on an oscilloscope. However, generating the new bitstream is slow and it would be nice to be able to change the blink rate on the fly.
 
+I called this project myBlinkWithATwist and used it to create square waves of various frequencies for clocking external devices. 
 
+* blink control via AXI
 
+see 
+http://www.ritravvenlab.com/cpet-563-blog/create-processorfpga-axi-interface-in-vivado
 
+To get going, copy the blinkWithATwist to myBlinkWithATwistAXI and then copy in the bash script 
+#+begin_src
+cp ../myBlinkWithATwist/startScript.sh  .
+#+end_src
+
+Basically following along this tutorial works well. The final project after following along is called myBlinkWithATwistAXI2
 
 #  LocalWords:  bitstream vivado snickerdoodle krtkl xilinx
