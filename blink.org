@@ -25,7 +25,7 @@ https://numato.com/kb/styx-use-xilinx-zynq-ps-pll-clocks-fpga-fabric/
 
 ** AXI interface
 
-
+http://www.ritravvenlab.com/cpet-563-blog/create-processorfpga-axi-interface-in-vivado
 http://www.fpgadeveloper.com/2014/08/using-the-axi-dma-in-vivado.html
 
 
