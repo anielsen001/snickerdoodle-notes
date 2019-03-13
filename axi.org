@@ -1,0 +1,24 @@
+#+TITLE: Snickerdoodle AXI notes
+
+* References:
+
+** FPGA Developer
+
+The FPGA Developer tutorials start with this base system, based on the MicroZed board.
+http://www.fpgadeveloper.com/2014/07/creating-a-base-system-for-the-zynq-in-vivado.html
+
+Then proceed to this axi loopback tutorial.
+http://www.fpgadeveloper.com/2014/08/using-the-axi-dma-in-vivado.html
+
+A previous version of the lookback tutorial using EDK instead of Vivado is here:
+http://www.fpgadeveloper.com/2014/03/using-the-axi-dma-engine.html 
+and it relied upon the Base System Builder
+http://www.fpgadeveloper.com/2014/02/creating-a-project-using-the-base-system-builder-2.html
+
+* Set up
+
+Using a snickerdoodle black v4.1 with Vivado 2018.2
+
+* create the base system using vivado
+
+Even through the tutorial was based on the microzed board, it worked fine with the snickerdoodle black board. 
