@@ -10,6 +10,10 @@ http://www.fpgadeveloper.com/2014/07/creating-a-base-system-for-the-zynq-in-viva
 Then proceed to this axi loopback tutorial.
 http://www.fpgadeveloper.com/2014/08/using-the-axi-dma-in-vivado.html
 
+These tutorials are based on a 2014 Vivado toolset. Published on github are newer code versions and instructions for:
+zeboard https://github.com/fpgadeveloper/zedboard-axi-dma
+microzed https://github.com/fpgadeveloper/microzed-axi-dma
+
 A previous version of the lookback tutorial using EDK instead of Vivado is here:
 http://www.fpgadeveloper.com/2014/03/using-the-axi-dma-engine.html 
 and it relied upon the Base System Builder
@@ -33,4 +37,4 @@ and every time the "Run->Run As->Run on hardware" is selected in the SDK, the bo
 
 This relies on the base system developed earlier. 
 
-Worked through this demo up to the SDK portion. there are a series of problems related to finding the correct header files for compilation.
+Worked through this demo up to the SDK portion. There are a series of problems related to finding the correct header files for compilation. This is probably related to the age of the vivado toolset used in the tutorial (2014), where as I'm using 2018.2. There are newer source code bases published on github for the microzed and zedboards. 
