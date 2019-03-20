@@ -21,4 +21,16 @@ Using a snickerdoodle black v4.1 with Vivado 2018.2
 
 * create the base system using vivado
 
-Even through the tutorial was based on the microzed board, it worked fine with the snickerdoodle black board. 
+Even through the tutorial was based on the microzed board, it worked fine with the snickerdoodle black board using the basic hardware setup developed in [[file:blink.org]].
+
+With the snickerdoodle board, programming the FPGA using the Diligent JTAG cable causes the white led heartbeat light to start up. Then connect via screen
+#+begin_src
+screen /dev/ttyACM0 115200
+#+end_src
+and every time the "Run->Run As->Run on hardware" is selected in the SDK, the board will respond with "Hello World"
+
+* create AXI DMA
+
+This relies on the base system developed earlier. 
+
+Worked through this demo up to the SDK portion. there are a series of problems related to finding the correct header files for compilation.
