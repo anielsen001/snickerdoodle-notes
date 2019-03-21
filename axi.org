@@ -54,3 +54,5 @@ Finding the board_part name was trickier. I grepped through an earlier tutorial 
 #+begin_src
 set_property -name "board_part" -value "krtkl.com:snickerdoodle_black:part0:1.0" -objects $obj
 #+end_src
+
+Several changes had to be made. I modified the microzed project in a fork with a snickerdoodle-branch here at https://github.com/anielsen001/microzed-axi-dma
