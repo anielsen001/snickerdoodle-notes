@@ -13,3 +13,5 @@ http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip
 Arrange IP to be managed separately from projects in version control.
 
 There's an example "blink ip" at the RIT RAVVENLAB site. This [[http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip][tutorial]] walks through the process of packaging and creating a demo IP for blinking an LED. This is similar to the process for modifying an existing IP walked through in the [[https://www.xilinx.com/support/documentation/application_notes/xapp1165.pdf][Vivado VCS note]].
+
+The first step is to create a directory somewhere that will be under version control. 
