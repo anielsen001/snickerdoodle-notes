@@ -355,9 +355,10 @@ design_1_wrapper.bit  design_1_wrapper.bit.bin  design_1_wrapper.bit.keep  write
 See:
 http://www.ritravvenlab.com/cpet-563-blog/snickerdoodle-scripting
 
-set path
-#+begin_src
-export PATH="/usr/local/xilinx/Vivado/2018.2/bin":$PATH
+set Vivado environment using Xilinx provided setup scripts, add to .bashrc
+#+begin_src sh
+export VIVADO_VER=2018.2
+source /usr/local/xilinx/Vivado/${VIVADO_VER}/settings64.sh
 #+end_src
 
 code from https://github.com/ritravvenlab/ravven-vhdl
