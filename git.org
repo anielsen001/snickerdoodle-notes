@@ -1,9 +1,19 @@
 #+TITLE: Version Control with Vivado
 
+There are two pieces:
+ - creating custom IP to be used in projects
+ - creating projects to control boards or systems
+
 * References:
 
 Using Vivado Design Suite with Version Control Systems
 https://www.xilinx.com/support/documentation/application_notes/xapp1165.pdf
+
+Xilinx packaging IP basics
+https://www.xilinx.com/support/documentation/sw_manuals/xilinx2017_2/ug1118-vivado-creating-packaging-custom-ip.pdf
+
+Creating custom IP
+http://blog.dev-flow.com/en/12-creating-a-custom-ip-in-vivado/
 
 Creating new Blink IP
 http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip
@@ -51,3 +61,6 @@ cd $HOME/proj/snickerdoodle/myip
 git add blink/blink.vhd blink/component.xml
 git commit -m"initial commit after vivado packaging"
 #+end_src
+
+
+* Project management
