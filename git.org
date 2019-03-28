@@ -8,6 +8,8 @@ https://www.xilinx.com/support/documentation/application_notes/xapp1165.pdf
 Creating new Blink IP
 http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip
 
+http://adiuvoengineering.com/maximising-reuse-in-your-vivado-design/
+
 * IP management
 
 Arrange IP to be managed separately from projects in version control.
@@ -15,3 +17,37 @@ Arrange IP to be managed separately from projects in version control.
 There's an example "blink ip" at the RIT RAVVENLAB site. This [[http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip][tutorial]] walks through the process of packaging and creating a demo IP for blinking an LED. This is similar to the process for modifying an existing IP walked through in the [[https://www.xilinx.com/support/documentation/application_notes/xapp1165.pdf][Vivado VCS note]].
 
 The first step is to create a directory somewhere that will be under version control. 
+
+#+begin_src sh
+mkdir $HOME/proj/snickerdoodle/myip
+#+end_src
+
+Initialize this is a git project
+
+#+begin_src sh
+cd $HOME/proj/snickerdoodle/myip
+git init
+#+end_src
+
+Create a directory for the specific IP
+
+#+begin_src sh
+mkdir $HOME/proj/snickerdoodle/myip/blink
+#+end_src
+
+Copy the VHDL sources into the blink directory created above.
+
+Run synthesis on the IP to make sure it builds correctly.
+
+Generate a list of the files that must be stored in version control. Run the following TCL command
+
+#+begin_src tcl
+get_files -all
+#+end_src
+
+Add these files to the git project
+#+begin_src sh
+cd $HOME/proj/snickerdoodle/myip
+git add blink/blink.vhd blink/component.xml
+git commit -m"initial commit after vivado packaging"
+#+end_src
