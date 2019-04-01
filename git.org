@@ -30,7 +30,75 @@ http://adiuvoengineering.com/maximising-reuse-in-your-vivado-design/
 
 This [[http://www.fpgadeveloper.com/2014/08/version-control-for-vivado-projects.html][FPGADeveloper]] tutorial has a good start. I'll walk through creating the [[http://www.ritravvenlab.com/cpet-563.html][RIT RAVVEN Lab]] [[http://www.ritravvenlab.com/cpet-563-blog/february-03rd-2019][Blink Project]] using something like this method.
 
+Create a directory to maintain everything related to the project
+#+begin_src sh
+mkdir blink-04-01-01
+#+end_src
 
+Create a subdirectory for all vivado related things
+#+begin_src sh
+mkdir blink-04-01-01/vivado
+#+end_src
+
+Create IP subdirectories
+#+begin_src sh
+mkdir -p blink-04-01-01/vivado/ip/blink/src
+#+end_src
+
+Get the blink vhdl code and put in the just created src directory
+#+begin_src sh
+cd blink-04-01-01/vivado/ip/blink/src
+wget https://raw.githubusercontent.com/anielsen001/ravven-vhdl/master/blinkWithATwist/ip/blink/src/blink.vhd
+cd -
+#+end_src
+
+Create BD (block diagram) subdirectories
+#+begin_src sh
+mkdir -p blink-04-01-01/vivado/src/bd
+#+end_src
+
+Initialize a git repo in the blink-xxxx directory
+#+begin_src sh
+cd blink-04-01-01/
+git init
+#+end_src
+
+Switch to the vivado directory and start vivado
+#+begin_src sh
+cd vivado
+vivado
+#+end_src
+
+I'm going to create a project called "blink" under the vivado directory. This directory can be entirely deleted and regenerated with the build.tcl script that will be created. 
+
+The first thing to be done is Package the blink IP. See http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip for an example. 
+
+Next, close this project and see this http://www.ritravvenlab.com/cpet-563-blog/february-03rd-2019 to create the project and add the IP you just created. Under "project manager -> settings" is an option to add new IP.
+
+Create the block diagram as in  http://www.ritravvenlab.com/cpet-563-blog/february-03rd-2019 and save the project. Then select "File -> Project -> Write Tcl..." and save the file under the vivado directory.
+
+Edit the build.tcl script. Look for these lines, they are around line 160 in my build.tcl
+#+begin_src tcl
+# Set 'sources_1' fileset object
+set obj [get_filesets sources_1]
+# Import local files from the original project
+set files [list \
+ [file normalize "${origin_dir}/blink/blink.srcs/sources_1/bd/design_1/design_1.bd" ]\
+]
+set imported_files [import_files -fileset sources_1 $files]
+#+end_src
+
+Add these lines just before them
+#+begin_src tcl
+####################    APN
+# Create block design
+source $origin_dir/src/bd/design_1.tcl
+
+# Generate the wrapper
+set design_name [get_bd_designs]
+make_wrapper -files [get_files $design_name.bd] -top -import
+####################    APN
+#+end_src
 
 * Separately manage IP 
 
