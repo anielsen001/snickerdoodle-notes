@@ -116,6 +116,12 @@ make_wrapper -files [get_files $design_name.bd] -top -import
 ####################    APN
 #+end_src
 
+Add and commit build.tcl to git.
+
+You should be able to clone this repo elsewhere and regenerate the project with
+#+begin_src sh
+vivado -mode batch -source build.tcl
+#+end_src
 
 
 * Separately manage IP 
