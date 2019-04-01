@@ -1,10 +1,16 @@
 #+TITLE: Version Control with Vivado
 
-There are two pieces:
+Would like to manage custom IP separately from the application. This seems trickier so I'll do that later.
+
+TODO later: There are two pieces:
  - creating custom IP to be used in projects
  - creating projects to control boards or systems
 
 * References:
+
+http://www.fpgadeveloper.com/2014/08/version-control-for-vivado-projects.html
+
+http://www.fpgadeveloper.com/2014/08/creating-a-custom-ip-block-in-vivado.html
 
 Using Vivado Design Suite with Version Control Systems
 https://www.xilinx.com/support/documentation/application_notes/xapp1165.pdf
@@ -20,7 +26,13 @@ http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip
 
 http://adiuvoengineering.com/maximising-reuse-in-your-vivado-design/
 
-* IP management
+* Version control IP and Application together
+
+This [[http://www.fpgadeveloper.com/2014/08/version-control-for-vivado-projects.html][FPGADeveloper]] tutorial has a good start. I'll walk through creating the [[http://www.ritravvenlab.com/cpet-563.html][RIT RAVVEN Lab]] [[http://www.ritravvenlab.com/cpet-563-blog/february-03rd-2019][Blink Project]] using something like this method.
+
+
+
+* Separately manage IP 
 
 Arrange IP to be managed separately from projects in version control.
 
@@ -32,17 +44,18 @@ The first step is to create a directory somewhere that will be under version con
 mkdir $HOME/proj/snickerdoodle/myip
 #+end_src
 
-Initialize this is a git project
+Initialize this is a git repository
 
 #+begin_src sh
 cd $HOME/proj/snickerdoodle/myip
 git init
 #+end_src
 
-Create a directory for the specific IP
+Create a directory for source code and then the specific IP
 
 #+begin_src sh
-mkdir $HOME/proj/snickerdoodle/myip/blink
+mkdir $HOME/proj/snickerdoodle/myip/src
+mkdir $HOME/proj/snickerdoodle/myip/src/blink
 #+end_src
 
 Copy the VHDL sources into the blink directory created above.
