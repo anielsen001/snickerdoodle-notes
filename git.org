@@ -73,9 +73,25 @@ I'm going to create a project called "blink" under the vivado directory. This di
 
 The first thing to be done is Package the blink IP. See http://www.ritravvenlab.com/cpet-563-blog/create-blink-ip for an example. 
 
+Now you can add the following files to git and commit them:
+#+begin_src sh
+apn@aria:~/proj/snickerdoodle/blink-04-01-02/vivado/ip/blink$ tree
+.
+├── component.xml
+├── src
+│   └── blink.vhd
+└── xgui
+    └── blink_v1_0.tcl
+
+2 directories, 3 files
+#+end_src 
+
+
 Next, close this project and see this http://www.ritravvenlab.com/cpet-563-blog/february-03rd-2019 to create the project and add the IP you just created. Under "project manager -> settings" is an option to add new IP.
 
 Create the block diagram as in  http://www.ritravvenlab.com/cpet-563-blog/february-03rd-2019 and save the project. Then select "File -> Project -> Write Tcl..." and save the file under the vivado directory.
+
+Create the block diagram tcl script from "File -> Export -> Export Block Design..." and save this tcl script in vivado/src/bd/design_1.tcl and add this to git.
 
 Edit the build.tcl script. Look for these lines, they are around line 160 in my build.tcl
 #+begin_src tcl
@@ -99,6 +115,8 @@ set design_name [get_bd_designs]
 make_wrapper -files [get_files $design_name.bd] -top -import
 ####################    APN
 #+end_src
+
+
 
 * Separately manage IP 
 
