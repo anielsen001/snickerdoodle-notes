@@ -93,7 +93,7 @@ Create the block diagram as in  http://www.ritravvenlab.com/cpet-563-blog/februa
 
 Create the block diagram tcl script from "File -> Export -> Export Block Design..." and save this tcl script in vivado/src/bd/design_1.tcl and add this to git.
 
-Edit the build.tcl script. Look for these lines, they are around line 160 in my build.tcl
+Edit the build.tcl script. Look for these lines, they are around line 160 in my build.tcl. Comment these out, the design_1.bd file will be created by the design_1.tcl script we added.
 #+begin_src tcl
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
