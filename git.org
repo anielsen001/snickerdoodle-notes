@@ -141,8 +141,10 @@ apn@aria:~/proj/snickerdoodle/blink-04-02-01$ tree
 
 You should be able to clone this repo elsewhere and regenerate the project with
 #+begin_src sh
-vivado -mode batch -source build.tcl
+apn@aria:~/proj/snickerdoodle/blink-04-02-01/vivado$ vivado -mode batch -source build.tcl
 #+end_src
+
+This will create a project directory called "blink" (or whatever name it's given in the build.tcl script" in the vivado directory. This entire "blink" directory can be deleted and recreated with the blink.tcl script.
 
 
 * Separately manage IP 
