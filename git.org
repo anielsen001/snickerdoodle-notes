@@ -118,6 +118,27 @@ make_wrapper -files [get_files $design_name.bd] -top -import
 
 Add and commit build.tcl to git.
 
+After committing everything, the repo looks like this:
+#+begin_src sh
+apn@aria:~/proj/snickerdoodle/blink-04-02-01$ tree
+.
+└── vivado
+    ├── build.tcl
+    ├── ip
+    │   └── blink
+    │       ├── component.xml
+    │       ├── src
+    │       │   └── blink.vhd
+    │       └── xgui
+    │           └── blink_v1_0.tcl
+    └── src
+        └── bd
+            └── design_1.tcl
+
+7 directories, 5 files
+
+#+end_src
+
 You should be able to clone this repo elsewhere and regenerate the project with
 #+begin_src sh
 vivado -mode batch -source build.tcl
