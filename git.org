@@ -125,9 +125,21 @@ set_property PACKAGE_PIN    G14         [get_ports led]
 set_property IOSTANDARD     LVCMOS33    [get_ports led]
 #+end_src
 
-Then select "File -> Project -> Write Tcl..." and save the file under the vivado directory as build.tcl
+Create the block diagram tcl script from "File -> Export -> Export Block Design..." and save this tcl script in vivado/src/bd/design_1.tcl and add this to git. This can also be done with a tcl command
+#+begin_src tcl
+write_bd_tcl <filename>
+#+end_src
+e.g.:
+#+begin_src tcl
+write_bd_tcl /home/apn/proj/snickerdoodle/blink-demo-git-02/vivado/src/bd/design_1.tcl
+#+end_src
 
-Create the block diagram tcl script from "File -> Export -> Export Block Design..." and save this tcl script in vivado/src/bd/design_1.tcl and add this to git.
+Then select "File -> Project -> Write Tcl..." and save the file under the vivado directory as build.tcl. This is equivalent to the tcl command write_project_tcl, using the defaults, it's this command:
+#+write_src tcl
+write_project_tcl -use_bd_files {/home/apn/proj/snickerdoodle/blink-demo-git-02/vivado/build2.tcl}
+#+end_src 
+
+
 
 Edit the build.tcl script. Look for these lines, they are around line 160 in my build.tcl. Comment these out, the design_1.bd file will be created by the design_1.tcl script we added.
 #+begin_src tcl
