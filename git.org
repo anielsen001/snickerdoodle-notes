@@ -192,9 +192,10 @@ Add and commit build.tcl to git.
 
 After committing everything, the repo looks like this:
 #+begin_src sh
-apn@aria:~/proj/snickerdoodle/blink-04-02-01$ tree
+apn@aria:~/proj/snickerdoodle/blink-demo-git-04$ tree
 .
 └── vivado
+    ├── build.sh
     ├── build.tcl
     ├── ip
     │   └── blink
@@ -204,10 +205,12 @@ apn@aria:~/proj/snickerdoodle/blink-04-02-01$ tree
     │       └── xgui
     │           └── blink_v1_0.tcl
     └── src
-        └── bd
-            └── design_1.tcl
+        ├── bd
+        │   └── design_1.tcl
+        └── constraints
+            └── constraints.xdc
 
-7 directories, 5 files
+8 directories, 7 files
 
 #+end_src
 
