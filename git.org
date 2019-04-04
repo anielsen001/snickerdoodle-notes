@@ -165,7 +165,28 @@ make_wrapper -files [get_files $design_name.bd] -top -import
 ####################    APN
 #+end_src
 
-need to edit build.tcl to handle constraints file.
+Need to edit build.tcl to handle constraints file. Around line 191 in the file I have, see these lines
+#+begin_src tcl
+# Add/Import constrs file and set constrs file properties
+set file "[file normalize ${origin_dir}/blink/blink.srcs/constrs_1/imports/constraints/constraints.xdc]"
+set file_imported [import_files -fileset constrs_1 [list $file]]
+set file "constraints/constraints.xdc"
+set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
+set_property -name "file_type" -value "XDC" -objects $file_obj
+#+end_src
+Modify them to be:
+#+begin_src tcl
+############### APN - edit to use repo constraints file
+# Add/Import constrs file and set constrs file properties
+# set file "[file normalize ${origin_dir}/blink/blink.srcs/constrs_1/imports/constraints/constraints.xdc]"
+set file "[file normalize ${origin_dir}/src/constraints/constraints.xdc]"
+set file_imported [import_files -fileset constrs_1 [list $file]]
+set file "constraints/constraints.xdc"
+set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
+set_property -name "file_type" -value "XDC" -objects $file_obj
+############### APN
+#+end_src
+
 
 Add and commit build.tcl to git.
 
